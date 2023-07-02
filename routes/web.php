@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AuthorizeController;
+use App\Http\Controllers\CallbackController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,5 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/authorize', [AuthorizeController::class, 'index']);
+Route::get('/callback', [CallbackController::class, 'index']);
+Route::post('/test', [CallbackController::class, 'test'])->name('test');
 
 require __DIR__.'/auth.php';
